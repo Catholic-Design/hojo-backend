@@ -32,3 +32,5 @@ rm -Rf 1_game.sql
 collect_user
 docker exec -i development-mysql-1 mysql --default-character-set=utf8mb4 -uroot -p123456 <./2_user.sql
 rm -Rf 2_user.sql
+
+echo 'Done!'
