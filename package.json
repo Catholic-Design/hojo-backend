@@ -53,6 +53,7 @@
     "winston": "^3.8.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.4.4",
     "@commitlint/config-conventional": "^17.4.4",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",
@@ -70,7 +71,7 @@
     "@typescript-eslint/parser": "^5.36.1",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "jest": "28.1.1",
     "jest-environment-jsdom": "28.1.1",
     "nx": "14.8.2",
