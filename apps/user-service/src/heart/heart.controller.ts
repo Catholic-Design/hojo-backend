@@ -10,7 +10,7 @@ export class HeartController {
 
   constructor(private readonly heartService: HeartService) {}
 
-  @Post("user-heart")
+  @Post("user-heart-all")
   async getCurrentHeart(@Body() message) {
     this.logger.log(`user-heart: ${JSON.stringify(message)}`);
     const { userId } = message;
