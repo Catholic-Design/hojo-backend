@@ -1,7 +1,7 @@
 import { Controller, Body, Post, Logger, UseGuards } from "@nestjs/common";
 import { ApiOkResponse, ApiTags } from "@nestjs/swagger";
 
-import { BibleSentenceResponse, UserPasswordLoginDto } from "@dto";
+import { BibleSentenceResponse, UserPasswordLoginDto, CreateUserDto } from "@dto";
 import { GuestInterface } from "@type";
 import { Guest, Serialize } from "@util";
 
@@ -14,6 +14,12 @@ export class UsersController {
   private readonly logger = new Logger(this.constructor.name);
 
   constructor(private readonly usersService: UsersService) {}
+
+  @Post("app/register")
+  async registerUser(@Body() createUserDto: CreateUserDto) {
+    this.logger.log(`${JSON.stringify(createUserDto)}`)
+    return this.usersService.registerUser(createUserDto)
+  }
 
   @Post("app/login")
   async loginApp(@Body() userPasswordLoginDto: UserPasswordLoginDto) {

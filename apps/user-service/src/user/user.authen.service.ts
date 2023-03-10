@@ -16,6 +16,16 @@ export class UserAuthenService {
     private userHelperService: UsersHelperService
   ) {}
 
+  async registerUser(fullName: string, email: string, phoneNumber: string, password: string) {
+    const e164PhoneNumber = this.userHelperService.convertToE164(phoneNumber, "VN");
+    const phoneExists = await this.userHelperService.checkPhoneNumberExists(e164PhoneNumber);
+    const emailExists = await this.userHelperService.checkEmailExists(email)
+    if (phoneExists || emailExists) {
+      throw new HttpException(`Email or phone number already exists`, HttpStatus.BAD_REQUEST);
+    }
+    return this.userRepo.createUser(fullName, email, e164PhoneNumber, password);
+  }
+
   async authenticateUserEmail(email: string) {
     const user = await this.userRepo.findUserByEmail(email);
     if (!user) {
