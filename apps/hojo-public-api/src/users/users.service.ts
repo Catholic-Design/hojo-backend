@@ -1,12 +1,19 @@
-import { Injectable } from "@nestjs/common";
+import {Injectable} from "@nestjs/common";
 import { AxiosInstance } from "axios";
 
 import { userServiceConsumer } from "@util";
-import { UserPasswordLoginDto } from "@dto";
+import { UserPasswordLoginDto, CreateUserDto } from "@dto";
 
 @Injectable()
 export class UsersService {
   private readonly userServiceClient: AxiosInstance = userServiceConsumer();
+
+  async registerUser(userDTO: CreateUserDto) {
+    const result = await this.userServiceClient.post("user/register", {
+      ...userDTO,
+    });
+    return result.data;
+  }
 
   async loginApp(loginDTO: UserPasswordLoginDto) {
     const result = await this.userServiceClient.post("user/login", {
