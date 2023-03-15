@@ -9,8 +9,15 @@ export class UserController {
 
   constructor(
     private readonly userAuthenService: UserAuthenService,
-    private readonly userBibleService: UserBibleService
+    private readonly userBibleService: UserBibleService,
   ) {}
+
+  @Post("register")
+  async register(@Body() userData) {
+    this.logger.log(`register: ${JSON.stringify(userData)}`);
+    const { fullName, email, phoneNumber, password } = userData;
+    return this.userAuthenService.registerUser(fullName, email, phoneNumber, password);
+  }
 
   @Post("login")
   async login(@Body() payload) {
