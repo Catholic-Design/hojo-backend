@@ -16,7 +16,7 @@ export class UserAuthenService {
     private userHelperService: UsersHelperService
   ) {}
 
-  async authenticateUserEmail(email: string) {
+  async authenticateUserPassword(email: string, password: string) {
     const user = await this.userRepo.findUserByEmail(email);
     if (!user) {
       throw new HttpException(`User ${email} not found`, HttpStatus.NOT_FOUND);
